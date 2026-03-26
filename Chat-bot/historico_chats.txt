@@ -1,0 +1,9 @@
+[26/03/2026 14:29:32] Usuário: Qual a probabilidade de ter câncer de mama?
+[26/03/2026 14:29:32] ChatMammo: A probabilidade de ter câncer de mama varia de acordo com vários fatores, incluindo idade, histórico familiar e outros fatores de risco. De acordo com estatísticas, cerca de 1 em 8 mulheres desenvolverão câncer de mama ao longo de sua vida. É importante lembrar que esses números são estatísticos e não refletem a probabilidade individual. Se você tiver preocupações, é sempre recomendável consultar um profissional de saúde.
+--------------------------------------------------
+[26/03/2026 14:34:11] Usuário: O meu nome é Matheus
+[26/03/2026 14:34:11] ChatMammo: Olá Matheus! É um prazer conhecê-lo. Estou aqui para ajudar com qualquer dúvida ou preocupação que você tenha sobre tumores de mama. Sinta-se à vontade para compartilhar o que está passando, e farei o meu melhor para oferecer informações úteis e apoio.
+--------------------------------------------------
+[26/03/2026 14:34:50] Usuário: Qual o meu nome
+[26/03/2026 14:34:50] ChatMammo: Seu nome é Matheus.
+--------------------------------------------------
