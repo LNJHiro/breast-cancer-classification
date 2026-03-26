@@ -7,25 +7,55 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 </head>
 <body>
 
-    <div id="sidebar">
-        <button id="btn-novo-chat" onclick="criarNovoChat()">
-            <span class="material-symbols-outlined">add</span> Nova Conversa
-        </button>
-        <div id="lista-chats"></div>
-    </div>
-
     <div class="dashboard-bg">
         
-        <header class="top-header">
-            <h1>ChatMammo</h1>
-        </header>
+        <model-viewer 
+            src="{{ url_for('static', filename='Robo 3D.glb') }}" 
+            alt="Robô ChatMammo 3D"
+            auto-rotate 
+            camera-controls
+            disable-zoom
+            class="robo-3d-overlay">
+        </model-viewer>
 
         <main class="ui-layout">
 
-            <aside class="side-column left-column">
+            <aside id="sidebar" class="glass-panel side-column left-column">
+                <header class="sidebar-header">
+                    <h1>ChatMammo</h1>
+                </header>
+                
+                <button id="btn-novo-chat" onclick="criarNovoChat()">
+                    <span class="material-symbols-outlined">add</span> Nova Conversa
+                </button>
+                <div id="lista-chats"></div>
+            </aside>
+
+            <section class="center-stage">
+                <div class="glass-panel chat-overlay">
+                    <div class="chat-header">
+                        <div class="mini-avatar"></div>
+                        <span class="dots">ChatMammo - Assistente Virtual</span>
+                    </div>
+
+                    <div id="chatHistory" class="chat-history"></div>
+                    
+                    <div class="chat-input-box">
+                        <span class="material-symbols-outlined search-icon">search</span>
+                        <input type="text" id="userInput" placeholder="Digite suas dúvidas..." autocomplete="off" onkeypress="handleKeyPress(event)">
+                        <button id="sendBtn" onclick="sendMessage()">
+                            <span class="material-symbols-outlined send-icon">send</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="side-column right-column">
                 <div class="glass-panel chart-panel">
                     <p class="panel-title" id="tituloGrafico">Estatísticas Dinâmicas</p>
                     <canvas id="meuGrafico" style="display: none; width: 100%;"></canvas>
@@ -43,79 +73,28 @@
                 </div>
             </aside>
 
-            <section class="center-stage">
-                <div class="glass-panel chat-overlay">
-                    <div class="chat-header">
-                        <div class="mini-avatar"></div>
-                        <span class="dots">ChatMammo - Assistente Virtual</span>
-                    </div>
-
-                    <div id="chatHistory" class="chat-history">
-                        </div>
-                    
-                    <div class="chat-input-box">
-                        <span class="material-symbols-outlined search-icon">search</span>
-                        <input type="text" id="userInput" placeholder="Digite suas dúvidas..." autocomplete="off" onkeypress="handleKeyPress(event)">
-                        <button id="sendBtn" onclick="sendMessage()">
-                            <span class="material-symbols-outlined send-icon">send</span>
-                        </button>
-                    </div>
-                </div>
-            </section>
-
-            <aside class="side-column right-column">
-                <div class="glass-panel info-panel">
-                    <p class="panel-title">⚠️ Aviso Importante</p>
-                    <p style="font-size: 0.85rem; color: rgba(255,255,255,0.9); line-height: 1.4;">
-                        Este chatbot fornece apenas informações gerais e estatísticas ilustrativas baseadas em dados públicos.<br><br>
-                        <strong>NÃO substitui uma consulta médica.</strong> Consulte sempre um mastologista ou ginecologista.
-                    </p>
-                </div>
-            </aside>
-
         </main>
-
-        <footer class="glass-panel bottom-footer">
-            <div class="project-info">
-                <p><strong>ChatMammo</strong> - Projeto Integrador Acadêmico</p>
-                <p>Desenvolvido para conscientização e informação sobre a saúde da mama.</p>
-                <p style="font-size: 0.75rem; color: rgba(255,255,255,0.6); margin-top: 3px;">Dados do Groq Llama 3.3. Gráficos gerados com Chart.js.</p>
-            </div>
-
-            <div class="collaborators">
-                <div class="collab-profile">
-                    <a href="https://github.com/LNJHiro" target="_blank" title="Ver GitHub do Colaborador 1">
-                        <img src="{{ url_for('static', filename='imagem 1.png') }}" alt="Foto Colaborador 1">
-                        <span>Hayron</span>
-                    </a>
-                </div>
-                <div class="collab-profile">
-                    <a href="https://github.com/Henrique-RMotta" target="_blank" title="Ver GitHub do Colaborador 2">
-                        <img src="{{ url_for('static', filename='imagem 2.png') }}" alt="Foto Colaborador 2">
-                        <span>Henrique Motta</span>
-                    </a>
-                </div>
-                <div class="collab-profile">
-                    <a href="https://github.com/matheus130607" target="_blank" title="Ver GitHub do Colaborador 3">
-                        <img src="{{ url_for('static', filename='imagem 3.png') }}" alt="Foto Colaborador 3">
-                        <span>Matheus Malaman</span>
-                    </a>
-                </div>
-                <div class="collab-profile">
-                    <a href="https://github.com/jefferson-kkk" target="_blank" title="Ver GitHub do Colaborador 4">
-                        <img src="{{ url_for('static', filename='imagem 4.png') }}" alt="Foto Colaborador 4">
-                        <span>Jefferson Bruno</span>
-                    </a>
-                </div>
-            </div>
-        </footer>
     </div> 
+
+    <div id="modal-delete" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <h3>Excluir Conversa</h3>
+            <p>Tem certeza que deseja excluir este histórico permanentemente?</p>
+            <div class="modal-buttons">
+                <button class="btn-cancelar" onclick="fecharModal()">Cancelar</button>
+                <button class="btn-confirmar" onclick="confirmarExclusao()">Excluir</button>
+            </div>
+        </div>
+    </div>
     
     <script>
         let graficoAtual = null;
         let audioAtual = null;      
         let botaoAudioAtivo = null; 
-        let chatAtualId = null; // Guarda o ID da conversa atual
+        let chatAtualId = null; 
+
+        // Variável para guardar qual chat o usuário quer excluir
+        let chatIdParaExcluir = null;
 
         // --- INICIALIZAÇÃO DA PÁGINA ---
         window.onload = async () => {
@@ -150,7 +129,7 @@
                 btnExcluir.innerHTML = '<span class="material-symbols-outlined">delete</span>';
                 btnExcluir.onclick = (e) => {
                     e.stopPropagation(); 
-                    excluirChat(chat.id);
+                    excluirChat(chat.id); // Agora apenas abre o modal
                 };
 
                 item.appendChild(spanTitulo);
@@ -179,12 +158,11 @@
             document.getElementById('tituloGrafico').innerText = 'Estatísticas Dinâmicas';
             if (graficoAtual) graficoAtual.destroy();
 
-            await carregarListaDeChats(); // Atualiza cor do item ativo
+            await carregarListaDeChats(); 
 
             const response = await fetch(`/api/chat/${id}`);
             const data = await response.json();
 
-            // Se for um chat novo, exibe a mensagem de boas vindas
             if (data.mensagens.length === 0) {
                 appendMessage("Olá! Sou o ChatMammo. Estou aqui para tirar suas dúvidas sobre nódulos, tumores de mama e saúde da mulher.<br><br>Tente me perguntar: <strong>\"Qual a probabilidade de ter câncer de mama?\"</strong>", "bot-message", false);
             } else {
@@ -206,13 +184,33 @@
             }
         }
 
-        async function excluirChat(id) {
-            if(!confirm("Tem certeza que deseja excluir esta conversa?")) return;
+        // ==========================================
+        // LÓGICA DO MODAL DE EXCLUSÃO
+        // ==========================================
+        function excluirChat(id) {
+            chatIdParaExcluir = id; // Salva o ID do chat
+            document.getElementById('modal-delete').style.display = 'flex'; // Mostra o modal
+        }
+
+        function fecharModal() {
+            chatIdParaExcluir = null;
+            document.getElementById('modal-delete').style.display = 'none'; // Esconde o modal
+        }
+
+        async function confirmarExclusao() {
+            if (!chatIdParaExcluir) return;
+            const id = chatIdParaExcluir;
+            
+            fecharModal(); // Esconde o modal antes mesmo de terminar de excluir
+
             await fetch(`/api/chat/${id}`, { method: 'DELETE' });
             
             if (chatAtualId === id) {
                 chatAtualId = null;
                 document.getElementById('chatHistory').innerHTML = '';
+                document.getElementById('meuGrafico').style.display = 'none';
+                document.getElementById('chartPlaceholder').style.display = 'block';
+                document.getElementById('tituloGrafico').innerText = 'Estatísticas Dinâmicas';
             }
             await carregarListaDeChats();
         }
@@ -294,13 +292,13 @@
                 const response = await fetch("/chat", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ message: message, chat_id: chatAtualId }) // Envia o ID!
+                    body: JSON.stringify({ message: message, chat_id: chatAtualId })
                 });
                 
                 const data = await response.json();
                 
                 if (data.texto) {
-                    appendMessage(data.texto, "bot-message", true); // Passa true para adicionar botão de ouvir nas mensagens novas
+                    appendMessage(data.texto, "bot-message", true); 
                 } else if (data.error) {
                     appendMessage("Desculpe, ocorreu um erro.", "bot-message", false);
                 }

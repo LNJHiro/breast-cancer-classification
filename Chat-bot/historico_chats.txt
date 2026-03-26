@@ -7,3 +7,35 @@
 [26/03/2026 14:34:50] Usuário: Qual o meu nome
 [26/03/2026 14:34:50] ChatMammo: Seu nome é Matheus.
 --------------------------------------------------
+[26/03/2026 15:04:10] [Chat: b16efc10-418d-404a-8349-1cbdb5d7f703]
+Usuário: qual a probabilidade de ter cancer de mama
+ChatMammo: A probabilidade de ter câncer de mama varia de acordo com vários fatores, incluindo idade, história familiar, fatores genéticos e estilo de vida. De acordo com a Organização Mundial da Saúde (OMS), cerca de 1 em 8 mulheres desenvolverão câncer de mama em algum momento de suas vidas. É importante lembrar que a probabilidade aumenta com a idade, especialmente após os 50 anos. Se você tiver preocupações, é fundamental consultar um profissional de saúde para obter orientação personalizada.
+--------------------------------------------------
+[26/03/2026 15:51:35] [Chat: c0270758-a693-4221-83b4-64f1e21e93c0]
+Usuário: Qual a probabilidade de ter câncer de mama?"
+ChatMammo: A probabilidade de ter câncer de mama varia ao longo da vida de uma mulher. De acordo com estatísticas, cerca de 1 em 8 mulheres desenvolverão câncer de mama em algum momento de suas vidas. É importante lembrar que fatores como história familiar, genética, idade e estilo de vida podem influenciar essa probabilidade. Se você tem preocupações, é sempre recomendável consultar um profissional de saúde para uma avaliação personalizada.
+--------------------------------------------------
+[26/03/2026 16:03:09] [Chat: d7135832-c660-4ab5-af67-41adcda8aac9]
+Usuário: Qual a probabilidade de ter câncer de mama?"
+ChatMammo: A probabilidade de ter câncer de mama varia ao longo da vida e depende de vários fatores, incluindo idade, história familiar e outros fatores de risco. É importante lembrar que esses números são estatísticos e não refletem a experiência individual de cada pessoa. Se você tiver preocupações, é sempre recomendável consultar um profissional de saúde.
+--------------------------------------------------
+[26/03/2026 16:10:57] [Chat: 1683b43b-7e14-4178-b8a2-599ed7fa1ce0]
+Usuário: Ola
+ChatMammo: Olá! Estou aqui para ajudar e oferecer informações sobre tumores de mama. Lembre-se de que não sou um médico, então é importante consultar um profissional de saúde para obter orientação personalizada. Como posso ajudar você hoje?
+--------------------------------------------------
+[26/03/2026 16:11:08] [Chat: 1683b43b-7e14-4178-b8a2-599ed7fa1ce0]
+Usuário: tudo bem
+ChatMammo: Estou aqui para ajudar com qualquer dúvida ou preocupação que você tenha sobre tumores de mama. Se precisar de informações sobre sintomas, diagnóstico, tratamento ou prevenção, basta perguntar. Lembre-se de que é importante consultar um médico para obter orientação personalizada e precisa.
+--------------------------------------------------
+[26/03/2026 16:18:09] [Chat: c9f9715e-9fdb-4a99-975d-9e11cbfdb2bc]
+Usuário: ola
+ChatMammo: Olá! Estou aqui para ajudar e oferecer informações sobre tumores de mama. Lembre-se de que não sou um médico, então é importante consultar um profissional de saúde para obter orientações personalizadas. Como posso ajudar você hoje?
+--------------------------------------------------
+[26/03/2026 16:18:17] [Chat: c9f9715e-9fdb-4a99-975d-9e11cbfdb2bc]
+Usuário: tudo bem
+ChatMammo: Estou aqui para ajudar e oferecer informações sobre tumores de mama. Se tiver alguma dúvida ou preocupação, sinta-se à vontade para perguntar. Posso fornecer informações gerais sobre prevenção, sintomas, tratamentos e muito mais. O que você gostaria de saber?
+--------------------------------------------------
+[26/03/2026 16:18:46] [Chat: c9f9715e-9fdb-4a99-975d-9e11cbfdb2bc]
+Usuário: Qual a probabilidade de ter câncer de mama?"
+ChatMammo: A probabilidade de ter câncer de mama varia de acordo com vários fatores, incluindo idade, história familiar e outros fatores de risco. De acordo com estatísticas, cerca de 1 em 8 mulheres desenvolverão câncer de mama ao longo da vida.
+--------------------------------------------------
