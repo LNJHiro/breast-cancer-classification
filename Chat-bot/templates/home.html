@@ -16,7 +16,7 @@
     />
     <link
       rel="shortcut icon"
-      href="/Chat-bot/static/favicon.ico"
+      href="/static/favicon.ico"
       type="image/x-icon"
     />
   </head>
@@ -69,7 +69,7 @@
       <ul class="nav nav-pills">
         <li class="nav-item">
           <a
-            href="/Chat-bot/templates/home.html"
+            href="{{ url_for('home') }}"
             class="nav-link active"
             aria-current="page"
             style="color: white; background-color: #ff6b9d"
@@ -78,7 +78,7 @@
         </li>
         <li class="nav-item">
           <a
-            href="/Chat-bot/templates/index.html"
+            href="{{ url_for('chat_page') }}"
             class="nav-link"
             style="color: #ff6b9d"
             >Ir para o chat</a
@@ -160,7 +160,7 @@
           <!-- botões -->
           <div class="d-flex gap-3 justify-content-center flex-wrap">
             <a
-              href="/Chat-bot/templates/index.html"
+              href="{{ url_for('chat_page') }}"
               class="btn rounded-pill fw-bold px-4 py-2"
               style="background: white; color: #e0507f; font-size: 1rem"
             >
@@ -262,7 +262,7 @@
       >
         <div class="m-5 text-center" s><h1>Câncer de Mama</h1></div>
         <img
-          src="/Chat-bot/static/outubrorosa.jpeg"
+          src="/static/outubrorosa.jpeg"
           class="img-thumbnail"
           alt=""
           style="height: 500px; width: 600px"
@@ -304,7 +304,7 @@
           <div class="row g-0 p-3">
             <div class="col-md-4">
               <img
-                src="\Chat-bot\static\robo.png"
+                src="/static/robo.png"
                 class="img-fluid rounded-start"
                 alt="..."
               />
@@ -372,7 +372,7 @@
             </div>
             <div class="col-md-4">
               <img
-                src="/Chat-bot/static/poster.png"
+                src="/static/poster.png"
                 class="img-fluid rounded-start"
                 alt="..."
               />
@@ -384,7 +384,7 @@
       <div class="d-flex align-items-center justify-content-center p-5">
         <div class="card" style="min-width: 1320px; min-height: 500px">
           <img
-            src="\Chat-bot\static\power bi.png"
+            src="/static/power bi.png"
             class="card-img-top"
             alt="Predição de tumores de mama"
             style="height: auto; object-fit: cover"
@@ -414,7 +414,7 @@
         <div class="d-flex justify-content-evenly align-items-center">
           <div class="d-flex flex-column text-center">
             <img
-              src="/Chat-bot/static/imagem 1.png"
+              src="/static/imagem 1.png"
               class="img-thumbnail"
               alt=""
               style="height: 235px; width: 235px"
@@ -423,7 +423,7 @@
           </div>
           <div class="d-flex flex-column text-center">
             <img
-              src="/Chat-bot/static/imagem 2.png"
+              src="/static/imagem 2.png"
               class="img-thumbnail"
               alt=""
               style="height: 235px; width: 235px"
@@ -432,7 +432,7 @@
           </div>
           <div class="d-flex flex-column text-center">
             <img
-              src="/Chat-bot/static/imagem 3.png"
+              src="/static/imagem 3.png"
               class="img-thumbnail"
               alt=""
               style="height: 235px; width: 235px"
@@ -441,7 +441,7 @@
           </div>
           <div class="d-flex flex-column text-center">
             <img
-              src="/Chat-bot/static/imagem 4.png"
+              src="/static/imagem 4.png"
               class="img-thumbnail"
               alt=""
               style="height: 235px; width: 235px"

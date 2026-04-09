@@ -69,6 +69,10 @@ def salvar_conversa_em_arquivo_txt(chat_id, mensagem_usuario, mensagem_bot):
 
 @app.route('/')
 def home():
+    return render_template('home.html')
+
+@app.route('/chat')
+def chat_page():
     return render_template('index.html')
 
 # --- NOVAS ROTAS PARA GERENCIAR AS CONVERSAS ---

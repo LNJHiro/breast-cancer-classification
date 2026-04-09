@@ -17,19 +17,20 @@ body, html {
 }
 
 /* ========================================== */
-/* FUNDO DA APLICAÇÃO                         */
+/* FUNDO DA APLICAÇÃO (TEMA ESCURO PADRÃO)    */
 /* ========================================== */
 .dashboard-bg {
     width: 100vw;
     height: 100vh;
-    background-image: url('imagem 5.png'); 
+    background-image: url('imagem\ 6.png'); /* Apenas uma barra */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     display: flex;
     flex-direction: column; 
     overflow: hidden;
-    position: relative; /* Adicionado para servir de âncora pro robô absoluto */
+    position: relative;
+    transition: background-image 0.3s ease-in-out;
 }
 
 /* ========================================== */
@@ -41,14 +42,9 @@ body, html {
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 1; /* Fica na FRENTE do fundo (imagem 5), mas ATRÁS dos painéis (z-index: 2) */
-    
-    /* Configurações visuais do modelo 3D */
+    z-index: 1; 
     exposure: 1.2; 
     shadow-intensity: 1;
-    
-    /* Se o robô estiver atrapalhando os cliques na tela, descomente a linha abaixo */
-    /* pointer-events: none; */ 
 }
 
 /* ========================================== */
@@ -62,7 +58,12 @@ body, html {
     height: 100vh; 
     padding: 0; 
     position: relative;
-    z-index: 2; /* Fica na frente do robô */
+    z-index: 2; 
+    pointer-events: none; 
+}
+
+.side-column {
+    pointer-events: auto;
 }
 
 /* ========================================== */
@@ -74,21 +75,21 @@ body, html {
     height: 100vh; 
     flex-shrink: 0; 
     padding: 20px;
-    /* Forçando o efeito de vidro translúcido */
-    background: rgba(255, 255, 255, 0.15) !important; 
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    /* AJUSTE AQUI: Fundo mais transparente e menos desfoque no Tema Escuro */
+    background: rgba(0, 0, 0, 0.15) !important; 
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     z-index: 20;
 }
 
 .left-column { 
     width: 280px; 
-    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .right-column { 
     width: 320px; 
-    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .side-column::-webkit-scrollbar { width: 5px; display: none; }
@@ -99,29 +100,35 @@ body, html {
 /* ESTILO DOS PAINÉIS INTERNOS (GRÁFICOS)     */
 /* ========================================== */
 .glass-panel {
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* AJUSTE AQUI: Painéis internos mais transparentes */
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 12px;
     padding: 15px; 
-    color: white;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    color: white; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     margin-bottom: 20px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
 .panel-title {
     font-size: 0.75rem; 
-    color: rgba(255, 255, 255, 0.9);
+    color: white;
     margin-bottom: 12px; 
     text-transform: uppercase;
     font-weight: 600;
 }
 
 /* ========================================== */
-/* MENU ESQUERDO (HISTÓRICO)                  */
+/* MENU ESQUERDO (HISTÓRICO E TEMA)           */
 /* ========================================== */
 .sidebar-header {
     text-align: center;
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .sidebar-header h1 {
@@ -129,6 +136,7 @@ body, html {
     color: white;
     font-weight: 500;
     font-size: 1.4rem; 
+    margin-bottom: 15px;
 }
 
 #btn-novo-chat {
@@ -145,6 +153,7 @@ body, html {
     gap: 8px;
     justify-content: center;
     transition: all 0.2s;
+    width: 100%;
 }
 
 #btn-novo-chat:hover { background-color: #e91e63; }
@@ -164,7 +173,7 @@ body, html {
 }
 
 .chat-item:hover, .chat-item.ativo {
-    background-color: rgba(255, 255, 255, 0.25);
+    background-color: rgba(255, 255, 255, 0.15);
     font-weight: 500;
 }
 
@@ -188,6 +197,7 @@ body, html {
     height: 100vh;
     position: relative;
     overflow: hidden;
+    pointer-events: none; 
 }
 
 .chat-overlay {
@@ -197,6 +207,11 @@ body, html {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    pointer-events: none; 
+}
+
+.chat-header, .chat-input-box {
+    pointer-events: auto; 
 }
 
 .chat-header {
@@ -205,11 +220,32 @@ body, html {
     padding: 20px 30px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     flex-shrink: 0;
+    gap: 16px;
+}
+
+.btn-home {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.12);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    padding: 10px 16px;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.btn-home:hover {
+    background: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.32);
 }
 
 .mini-avatar {
     width: 32px; height: 32px; 
-    background-image: url('imagem 5.png'); 
+    background-image: url('Robo\ 3D.glb'); /* Apenas uma barra */
     background-size: cover;
     background-position: center top;
     border-radius: 50%;
@@ -230,6 +266,10 @@ body, html {
     display: flex;
     flex-direction: column;
     gap: 12px; 
+    width: 100%;
+    max-width: 800px; 
+    margin: 0 auto; 
+    pointer-events: none; 
 }
 
 .chat-history::-webkit-scrollbar { width: 6px; }
@@ -243,14 +283,19 @@ body, html {
     font-size: 1rem; 
     line-height: 1.5;
     animation: fadeIn 0.3s ease-in-out;
+    pointer-events: auto; 
 }
 
 .bot-message {
-    background: rgba(255, 255, 255, 0.95); 
-    color: #222;
+    /* AJUSTE AQUI: Balão do robô ligeiramente translúcido no tema escuro */
+    background: rgba(30, 30, 30, 0.85);
+    color: white; 
+    border: 1px solid rgba(255, 255, 255, 0.1);
     align-self: flex-start;
     border-bottom-left-radius: 4px;
-    margin-left: max(0px, calc(50% - 400px));
+    margin-left: 0; 
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
 
 .user-message {
@@ -258,7 +303,7 @@ body, html {
     color: white;
     align-self: flex-end;
     border-bottom-right-radius: 4px;
-    margin-right: max(0px, calc(50% - 400px));
+    margin-right: 0; 
 }
 
 @keyframes fadeIn {
@@ -270,31 +315,36 @@ body, html {
     flex-shrink: 0; 
     display: flex;
     align-items: center;
-    background-color: white;
+    /* AJUSTE AQUI: Caixa de digitar mais transparente no tema escuro */
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 25px;
     padding: 12px 20px; 
-    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
     width: calc(100% - 60px); 
     max-width: 800px; 
     margin: 10px auto 20px auto; 
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
 
-.search-icon { color: #888; margin-right: 10px; font-size: 1.2rem; }
+.search-icon { color: rgba(255,255,255,0.6); margin-right: 10px; font-size: 1.2rem; }
 
 .chat-input-box input {
     flex: 1;
     border: none;
     outline: none;
     font-size: 1.05rem; 
-    color: #333;
+    color: white;
     background: transparent;
 }
+.chat-input-box input::placeholder { color: rgba(255,255,255,0.5); }
 
 .chat-input-box button {
     background: none;
     border: none;
     cursor: pointer;
-    color: #333;
+    color: white;
     padding-left: 10px;
 }
 
@@ -327,7 +377,7 @@ body, html {
 .list-panel li { 
     margin-bottom: 12px; font-size: 0.8rem; 
     display: flex; align-items: flex-start; gap: 8px; 
-    color: rgba(255,255,255,0.95); 
+    color: white; 
 }
 
 /* ========================================== */
@@ -339,7 +389,7 @@ body, html {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.5); 
+    background: rgba(0, 0, 0, 0.7); 
     backdrop-filter: blur(5px); 
     display: flex;
     justify-content: center;
@@ -347,13 +397,15 @@ body, html {
     z-index: 9999;
     opacity: 0;
     animation: fadeInModal 0.3s forwards;
+    pointer-events: auto; 
 }
 
 .modal-content {
-    background: white;
+    background: #222;
+    color: white;
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     text-align: center;
     max-width: 350px;
     width: 90%;
@@ -363,13 +415,13 @@ body, html {
 
 .modal-content h3 {
     font-family: 'Montserrat', sans-serif;
-    color: #333;
+    color: white;
     margin-bottom: 10px;
     font-size: 1.2rem;
 }
 
 .modal-content p {
-    color: #666;
+    color: #bbb;
     margin-bottom: 25px;
     font-size: 0.95rem;
     line-height: 1.4;
@@ -391,18 +443,9 @@ body, html {
     transition: all 0.2s;
 }
 
-.btn-cancelar {
-    background: #f0f0f0;
-    color: #555;
-}
-
-.btn-cancelar:hover { background: #e0e0e0; }
-
-.btn-confirmar {
-    background: #ff6b9d;
-    color: white;
-}
-
+.btn-cancelar { background: #444; color: white; }
+.btn-cancelar:hover { background: #555; }
+.btn-confirmar { background: #ff6b9d; color: white; }
 .btn-confirmar:hover { background: #e91e63; transform: scale(1.05); }
 
 @keyframes fadeInModal { to { opacity: 1; } }
@@ -413,10 +456,120 @@ body, html {
 /* ========================================== */
 @media screen and (max-width: 1024px) {
     .right-column { display: none; }
-    .bot-message { margin-left: 0; }
-    .user-message { margin-right: 0; }
 }
 @media screen and (max-width: 768px) {
     .left-column { display: none; } 
     .chat-input-box { width: calc(100% - 30px); }
+}
+
+/* ========================================== */
+/* BOTÃO DE TEMA E MODO CLARO                 */
+/* ========================================== */
+
+.btn-theme {
+    background-color: transparent;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-bottom: 15px;
+    width: 100%;
+    transition: all 0.2s;
+    font-size: 0.85rem;
+}
+.btn-theme:hover { background-color: rgba(255, 255, 255, 0.2); }
+
+body.light-mode .btn-theme {
+    color: #333;
+    border-color: rgba(0, 0, 0, 0.3);
+}
+body.light-mode .btn-theme:hover { background-color: rgba(0, 0, 0, 0.1); }
+
+/* ==========================================
+   TEMA CLARO (LIGHT MODE) 
+   ========================================== */
+
+/* Fundo da Aplicação */
+body.light-mode .dashboard-bg {
+    background-image: url('imagem\ 5.png'); /* Apenas uma barra */
+}
+
+body.light-mode {
+    color: #333;
+}
+
+/* Coluna da Esquerda (Menu) mantém o fundo */
+body.light-mode .left-column {
+    background: rgba(255, 255, 255, 0.8) !important;
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Garante que o container geral da direita não tenha fundo (para não cobrir a tela) */
+body.light-mode .right-column {
+    background: transparent !important;
+    border: none !important;
+}
+
+/* PAINÉIS ESPECÍFICOS: Gráficos, Queries */
+body.light-mode .glass-panel {
+    background: rgba(255, 255, 255, 0.244) !important; 
+    border: 1px solid rgba(255, 255, 255, 0.8) !important;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+}
+
+/* Caixa de Digitação (Meio) - VISÍVEL */
+body.light-mode .chat-input-box {
+    background: rgba(255, 255, 255, 0.8) !important; 
+    border: 1px solid rgba(0, 0, 0, 0.1) !important; 
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1) !important; 
+    backdrop-filter: blur(10px) !important; 
+    -webkit-backdrop-filter: blur(10px) !important;
+}
+
+/* Mensagens do Robô (Meio) - VISÍVEL */
+body.light-mode .bot-message {
+    background: rgba(255, 255, 255, 0.9) !important; 
+    border: 1px solid rgba(0, 0, 0, 0.1) !important; 
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05) !important; 
+    backdrop-filter: blur(5px) !important; 
+    -webkit-backdrop-filter: blur(5px) !important;
+    color: #111 !important; 
+}
+
+/* Cores de textos, títulos e listas */
+body.light-mode .sidebar-header h1,
+body.light-mode .panel-title,
+body.light-mode .chat-item,
+body.light-mode .dots,
+body.light-mode .list-panel li,
+body.light-mode #chartPlaceholder {
+    color: #111 !important; 
+}
+
+/* Ajustes da lista (hover) no menu da esquerda */
+body.light-mode .chat-item:hover, 
+body.light-mode .chat-item.ativo {
+    background: rgba(255, 107, 157, 0.15);
+    color: #000 !important;
+}
+
+body.light-mode .btn-excluir { color: #888; }
+body.light-mode .btn-excluir:hover { color: #ff2a2a; }
+
+/* Ajuste das informações na caixa de digitação */
+body.light-mode .chat-input-box input {
+    color: #111 !important; 
+    font-weight: 500;
+}
+
+body.light-mode .chat-input-box input::placeholder { color: #555 !important; }
+body.light-mode .search-icon, body.light-mode .chat-input-box .send-icon { color: #111 !important; }
+
+/* Ajuste do botão Novo Chat */
+body.light-mode #btn-novo-chat {
+    box-shadow: 0 4px 10px rgba(255, 107, 157, 0.3);
 }
