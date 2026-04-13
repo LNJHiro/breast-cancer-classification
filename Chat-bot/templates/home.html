@@ -1,47 +1,19 @@
 <!doctype html>
-<html lang="pt-br">
+<html lang="pt-br" data-bs-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ChatMammo - Assistente Virtual</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="shortcut icon"
-      href="/static/favicon.ico"
-      type="image/x-icon"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous"/>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"/>
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon"/>
   </head>
 
   <style>
-    .imagem-fundo {
-      position: relative;
-      background-image: url("/Chat-bot/static/imagem\ 5.png");
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-attachment: scroll;
-      min-height: 600px;
-    }
-
-    body {
-      font-family: "Nunito", sans-serif;
-      color: #555;
-    }
-
-    h1 {
-      font-family: "Playfair Display", sans-serif;
-      color: #e0507f;
-    }
-
+    body { font-family: "Nunito", sans-serif; color: #555; }
+    [data-bs-theme="dark"] body { color: #ccc; }
+    h1 { font-family: "Playfair Display", sans-serif; color: #e0507f; }
     .info-footer h1 {
       font-family: "Nunito", sans-serif;
       font-size: 1.3rem;
@@ -50,424 +22,216 @@
       letter-spacing: 0.05em;
       margin-bottom: 0;
     }
-    hr {
-      border-color: rgba(255, 107, 157, 0.2);
+    hr { border-color: rgba(255, 107, 157, 0.2); }
+    .bg-rosa { background-color: #fff0f5; }
+    [data-bs-theme="dark"] .bg-rosa { background-color: #2a1020; }
+    .toggle-btn {
+      border: none;
+      background: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      line-height: 1;
     }
+    .toggle-btn:hover { transform: rotate(20deg) scale(1.2); }
+    [data-animate] { visibility: hidden; }
   </style>
+
   <body>
     <header class="d-flex flex-wrap justify-content-center py-3 border-bottom">
-      <a
-        href="/"
-        class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
-      >
-        <svg class="bi me-2" width="40" height="32" aria-hidden="true">
-          <use xlink:href="#bootstrap"></use>
-        </svg>
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+        <svg class="bi me-2" width="40" height="32" aria-hidden="true"><use xlink:href="#bootstrap"></use></svg>
         <span class="fs-4 fw-bold" style="color: #ff6b9d">ChatMammo</span>
-        <p></p>
       </a>
-      <ul class="nav nav-pills">
+      <ul class="nav nav-pills align-items-center gap-2">
         <li class="nav-item">
-          <a
-            href="{{ url_for('home') }}"
-            class="nav-link active"
-            aria-current="page"
-            style="color: white; background-color: #ff6b9d"
-            >Home</a
-          >
+          <a href="{{ url_for('home') }}" class="nav-link active" aria-current="page" style="color: white; background-color: #ff6b9d">Home</a>
         </li>
         <li class="nav-item">
-          <a
-            href="{{ url_for('chat_page') }}"
-            class="nav-link"
-            style="color: #ff6b9d"
-            >Ir para o chat</a
-          >
+          <a href="{{ url_for('chat_page') }}" class="nav-link" style="color: #ff6b9d">Ir para o chat</a>
+        </li>
+        <li class="nav-item">
+          <button class="toggle-btn" id="themeToggle" title="Alternar modo escuro/claro" aria-label="Alternar tema">🌙</button>
         </li>
       </ul>
     </header>
 
     <main class="d-flex flex-column">
-      <div
-        class="position-relative d-flex align-items-center justify-content-center"
-        style="
-          background-image: url(&quot;/static/imagem 5.png&quot;);
-          background-position: center;
-          background-size: cover;
-          background-repeat: no-repeat;
-          min-height: 600px;
-        "
-      >
-        <!-- overlay rosa sobre a imagem -->
-        <div
-          class="position-absolute top-0 start-0 w-100 h-100"
-          style="
-            background: linear-gradient(
-              135deg,
-              rgba(255, 107, 157, 0.8) 0%,
-              rgba(255, 180, 210, 0.45) 100%
-            );
-          "
-        ></div>
 
-        <!-- conteúdo centralizado -->
-        <div
-          class="position-relative text-center px-4 py-5"
-          style="z-index: 2; max-width: 640px"
-        >
-          <!-- badge -->
-          <span
-            class="d-inline-block mb-3 px-3 py-1 rounded-pill"
-            style="
-              background: rgba(255, 255, 255, 0.2);
-              border: 1px solid rgba(255, 255, 255, 0.4);
-              color: white;
-              font-size: 0.8rem;
-              font-weight: 700;
-              letter-spacing: 0.1em;
-              text-transform: uppercase;
-            "
-          >
+      <!-- Hero -->
+      <div
+        class="position-relative d-flex align-items-center justify-content-center animate__animated animate__fadeIn"
+        style="background-image: url('/static/imagem 5.png'); background-position: center; background-size: cover; background-repeat: no-repeat; min-height: 600px;"
+      >
+        <div class="position-absolute top-0 start-0 w-100 h-100"
+          style="background: linear-gradient(135deg, rgba(255,107,157,0.8) 0%, rgba(255,180,210,0.45) 100%);"></div>
+
+        <div class="position-relative text-center px-4 py-5 animate__animated animate__fadeInDown" style="z-index: 2; max-width: 640px">
+          <span class="d-inline-block mb-3 px-3 py-1 rounded-pill"
+            style="background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4); color: white; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;">
             Assistente Virtual em Saúde
           </span>
-
-          <!-- título -->
-          <h1
-            class="display-3 fw-bold mb-3"
-            style="
-              font-family: &quot;Playfair Display&quot;, serif;
-              color: white;
-              text-shadow: 0 2px 16px rgba(150, 30, 60, 0.2);
-            "
-          >
-            Bem-Vindo ao<br />ChatMammo
+          <h1 class="display-3 fw-bold mb-3" style="font-family: 'Playfair Display', serif; color: white; text-shadow: 0 2px 16px rgba(150,30,60,0.2);">
+            Bem-Vindo ao<br/>ChatMammo
           </h1>
-
-          <!-- subtítulo -->
-          <p
-            class="mb-4"
-            style="
-              color: rgba(255, 255, 255, 0.92);
-              font-size: 1.1rem;
-              line-height: 1.7;
-            "
-          >
-            Um assistente com inteligência artificial dedicado à conscientização
-            e informação sobre o câncer de mama — disponível a qualquer hora, de
-            forma simples e acolhedora.
+          <p class="mb-4" style="color: rgba(255,255,255,0.92); font-size: 1.1rem; line-height: 1.7;">
+            Um assistente com inteligência artificial dedicado à conscientização e informação sobre o câncer de mama — disponível a qualquer hora, de forma simples e acolhedora.
           </p>
-
-          <!-- botões -->
           <div class="d-flex gap-3 justify-content-center flex-wrap">
-            <a
-              href="{{ url_for('chat_page') }}"
-              class="btn rounded-pill fw-bold px-4 py-2"
-              style="background: white; color: #e0507f; font-size: 1rem"
-            >
-              Ir para o Chat
-            </a>
-            <a
-              href="#"
-              class="btn rounded-pill fw-bold px-4 py-2"
-              style="
-                border: 2px solid rgba(255, 255, 255, 0.75);
-                color: white;
-                font-size: 1rem;
-              "
-            >
-              Saiba Mais
-            </a>
+            <a href="{{ url_for('chat_page') }}" class="btn rounded-pill fw-bold px-4 py-2" style="background: white; color: #e0507f; font-size: 1rem">Ir para o Chat</a>
+            <a href="#" class="btn rounded-pill fw-bold px-4 py-2" style="border: 2px solid rgba(255,255,255,0.75); color: white; font-size: 1rem">Saiba Mais</a>
           </div>
-
-          <!-- stats -->
           <div class="d-flex justify-content-center gap-4 mt-4 flex-wrap">
             <div class="text-center">
-              <div class="fw-bold" style="font-size: 1.6rem; color: white">
-                97%
-              </div>
-              <div
-                style="
-                  font-size: 0.75rem;
-                  color: rgba(255, 255, 255, 0.8);
-                  text-transform: uppercase;
-                  letter-spacing: 0.06em;
-                "
-              >
-                Acurácia
-              </div>
+              <div class="fw-bold" style="font-size: 1.6rem; color: white">97%</div>
+              <div style="font-size: 0.75rem; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 0.06em">Acurácia</div>
             </div>
-            <div style="width: 1px; background: rgba(255, 255, 255, 0.3)"></div>
+            <div style="width: 1px; background: rgba(255,255,255,0.3)"></div>
             <div class="text-center">
-              <div class="fw-bold" style="font-size: 1.6rem; color: white">
-                0,98
-              </div>
-              <div
-                style="
-                  font-size: 0.75rem;
-                  color: rgba(255, 255, 255, 0.8);
-                  text-transform: uppercase;
-                  letter-spacing: 0.06em;
-                "
-              >
-                AUC-ROC
-              </div>
+              <div class="fw-bold" style="font-size: 1.6rem; color: white">0,98</div>
+              <div style="font-size: 0.75rem; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 0.06em">AUC-ROC</div>
             </div>
-            <div style="width: 1px; background: rgba(255, 255, 255, 0.3)"></div>
+            <div style="width: 1px; background: rgba(255,255,255,0.3)"></div>
             <div class="text-center">
-              <div class="fw-bold" style="font-size: 1.6rem; color: white">
-                24h
-              </div>
-              <div
-                style="
-                  font-size: 0.75rem;
-                  color: rgba(255, 255, 255, 0.8);
-                  text-transform: uppercase;
-                  letter-spacing: 0.06em;
-                "
-              >
-                Disponível
-              </div>
+              <div class="fw-bold" style="font-size: 1.6rem; color: white">24h</div>
+              <div style="font-size: 0.75rem; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 0.06em">Disponível</div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="p-5" style="background-color: #fff0f5">
-        <div class="m-5"><h1>Sobre o Projeto</h1></div>
-        <div
-          class="card mb-3 container d-flex justify-content-center flex-column"
-          style="min-height: 500px"
-        >
-          <div
-            class="card-body d-flex align-items-center justify-content-center flex-column"
-          >
+      <!-- Sobre o Projeto -->
+      <div class="p-5 bg-rosa">
+        <div class="m-5"><h1 class="animate__animated" data-animate="animate__fadeInLeft">Sobre o Projeto</h1></div>
+        <div class="card mb-3 container d-flex justify-content-center flex-column animate__animated" data-animate="animate__fadeInUp" style="min-height: 500px">
+          <div class="card-body d-flex align-items-center justify-content-center flex-column">
             <h1 class="card-title" style="color: #ff6b9d">Introdução</h1>
             <p class="card-text fs-5">
-              O ChatMammo é um projeto com o objetivo de unir inteligência
-              artificial e conscientização sobre o câncer de mama. O sistema
-              combina um modelo de machine learning treinado para classificar
-              tumores como benignos ou malignos com um assistente virtual
-              acessível e empático, capaz de responder dúvidas de forma clara e
-              humanizada. A proposta busca democratizar o acesso à informação
-              médica de qualidade, auxiliando tanto pacientes quanto
-              profissionais de saúde na compreensão dos riscos e diagnósticos
-              relacionados ao câncer de mama.
+              O ChatMammo é um projeto com o objetivo de unir inteligência artificial e conscientização sobre o câncer de mama. O sistema combina um modelo de machine learning treinado para classificar tumores como benignos ou malignos com um assistente virtual acessível e empático, capaz de responder dúvidas de forma clara e humanizada. A proposta busca democratizar o acesso à informação médica de qualidade, auxiliando tanto pacientes quanto profissionais de saúde na compreensão dos riscos e diagnósticos relacionados ao câncer de mama.
             </p>
           </div>
         </div>
       </div>
 
-      <div
-        class="d-flex flex-column align-items-center justify-content-center p-5 text-start gap-2"
-      >
-        <div class="m-5 text-center" s><h1>Câncer de Mama</h1></div>
-        <img
-          src="/static/outubrorosa.jpeg"
-          class="img-thumbnail"
-          alt=""
-          style="height: 500px; width: 600px"
-        />
-        <div class="text-start">
+      <!-- Câncer de Mama -->
+      <div class="d-flex flex-column align-items-center justify-content-center p-5 text-start gap-2">
+        <div class="m-5 text-center"><h1 class="animate__animated" data-animate="animate__fadeInRight">Câncer de Mama</h1></div>
+        <img src="/static/outubrorosa.jpeg" class="img-thumbnail animate__animated" data-animate="animate__zoomIn" alt="" style="height: 500px; width: 600px"/>
+        <div class="text-start animate__animated" data-animate="animate__fadeInUp">
           <h5 class="fw-bold" style="color: #ff6b9d">O que é ?</h5>
-          <p class="fs-5">
-            O câncer de mama é um tumor maligno que se origina nas células das
-            glândulas mamárias. É o tipo de câncer mais comum entre as mulheres
-            no Brasil e no mundo, representando cerca de 30% dos casos novos a
-            cada ano. Apesar de ser mais frequente em mulheres, homens também
-            podem desenvolver a doença, embora em menor proporção. O diagnóstico
-            precoce é fundamental: quando identificado nos estágios iniciais, as
-            chances de cura chegam a mais de 95%. Por isso, exames preventivos
-            regulares — como a mamografia e o autoexame — são essenciais para a
-            detecção rápida e o tratamento eficaz.
-          </p>
+          <p class="fs-5">O câncer de mama é um tumor maligno que se origina nas células das glândulas mamárias. É o tipo de câncer mais comum entre as mulheres no Brasil e no mundo, representando cerca de 30% dos casos novos a cada ano. Apesar de ser mais frequente em mulheres, homens também podem desenvolver a doença, embora em menor proporção. O diagnóstico precoce é fundamental: quando identificado nos estágios iniciais, as chances de cura chegam a mais de 95%. Por isso, exames preventivos regulares — como a mamografia e o autoexame — são essenciais para a detecção rápida e o tratamento eficaz.</p>
           <h5 class="fw-bold" style="color: #ff6b9d">Como foi aplicado</h5>
-          <p class="fs-5">
-            O modelo foi desenvolvido utilizando o dataset público Breast Cancer
-            Wisconsin, composto por características extraídas de imagens de
-            biópsias mamárias. Após a limpeza dos dados e padronização com
-            StandardScaler, foi treinado um modelo de Regressão Logística com
-            foco na redução de falsos negativos — o erro mais crítico em
-            contexto médico, pois representa casos malignos classificados
-            incorretamente como benignos. O modelo treinado foi então integrado
-            ao backend do ChatMammo, permitindo que o assistente utilize
-            predições reais para embasar suas respostas e gráficos explicativos.
-          </p>
+          <p class="fs-5">O modelo foi desenvolvido utilizando o dataset público Breast Cancer Wisconsin, composto por características extraídas de imagens de biópsias mamárias. Após a limpeza dos dados e padronização com StandardScaler, foi treinado um modelo de Regressão Logística com foco na redução de falsos negativos — o erro mais crítico em contexto médico, pois representa casos malignos classificados incorretamente como benignos. O modelo treinado foi então integrado ao backend do ChatMammo, permitindo que o assistente utilize predições reais para embasar suas respostas e gráficos explicativos.</p>
         </div>
       </div>
 
-      <div class="p-5" style="background-color: #fff0f5">
-        <div class="m-5" style="color: #ff6b9d"><h1>Nosso ChatBot</h1></div>
-        <div
-          class="card mb-3 container d-flex justify-content-center flex-column"
-          style="min-height: 500px"
-        >
+      <!-- Nosso ChatBot -->
+      <div class="p-5 bg-rosa">
+        <div class="m-5" style="color: #ff6b9d"><h1 class="animate__animated" data-animate="animate__fadeInLeft">Nosso ChatBot</h1></div>
+        <div class="card mb-3 container d-flex justify-content-center flex-column animate__animated" data-animate="animate__fadeInUp" style="min-height: 500px">
           <div class="row g-0 p-3">
-            <div class="col-md-4">
-              <img
-                src="/static/robo.png"
-                class="img-fluid rounded-start"
-                alt="..."
-              />
-            </div>
+            <div class="col-md-4"><img src="/static/robo.png" class="img-fluid rounded-start" alt="..."/></div>
             <div class="col-md-8">
-              <div
-                class="card-body d-flex align-items-center justify-content-center flex-column"
-              >
-                <h1 class="card-title" style="color: #ff6b9d">
-                  O que é um ChatBot
-                </h1>
-                <p class="card-text fs-5">
-                  Um chatbot é um programa de computador projetado para simular
-                  conversas humanas por meio de texto ou voz. Utilizando
-                  técnicas de inteligência artificial e processamento de
-                  linguagem natural, ele consegue interpretar as perguntas do
-                  usuário e oferecer respostas relevantes de forma automática,
-                  sem necessitar de um atendente humano. No contexto da saúde,
-                  chatbots como o ChatMammo têm um papel especialmente
-                  importante: permitem que qualquer pessoa acesse informações
-                  confiáveis a qualquer hora do dia, de forma simples e
-                  acolhedora, auxiliando na conscientização e no esclarecimento
-                  de dúvidas sobre doenças como o câncer de mama.
-                </p>
+              <div class="card-body d-flex align-items-center justify-content-center flex-column">
+                <h1 class="card-title" style="color: #ff6b9d">O que é um ChatBot</h1>
+                <p class="card-text fs-5">Um chatbot é um programa de computador projetado para simular conversas humanas por meio de texto ou voz. Utilizando técnicas de inteligência artificial e processamento de linguagem natural, ele consegue interpretar as perguntas do usuário e oferecer respostas relevantes de forma automática, sem necessitar de um atendente humano. No contexto da saúde, chatbots como o ChatMammo têm um papel especialmente importante: permitem que qualquer pessoa acesse informações confiáveis a qualquer hora do dia, de forma simples e acolhedora, auxiliando na conscientização e no esclarecimento de dúvidas sobre doenças como o câncer de mama.</p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
+      <!-- Como foi feito -->
       <div class="p-5">
-        <div
-          class="card mb-3 container d-flex justify-content-center flex-column"
-          style="min-height: 500px"
-        >
+        <div class="card mb-3 container d-flex justify-content-center flex-column animate__animated" data-animate="animate__fadeInRight" style="min-height: 500px">
           <div class="row g-0">
             <div class="col-md-8">
-              <div
-                class="card-body d-flex align-items-center justify-content-center flex-column"
-              >
-                <h1 class="card-title" style="color: #ff6b9d">
-                  Como foi feito ?
-                </h1>
-                <p class="card-text fs-5">
-                  O projeto foi desenvolvido em Python, combinando bibliotecas
-                  de machine learning e desenvolvimento web. Para a construção
-                  do modelo preditivo, foram utilizadas as bibliotecas Pandas e
-                  NumPy para manipulação e limpeza dos dados, Scikit-learn para
-                  o pré-processamento com StandardScaler, treinamento da
-                  Regressão Logística e avaliação com métricas como acurácia,
-                  matriz de confusão e Curva ROC. O backend da aplicação web foi
-                  construído com Flask, responsável por gerenciar as rotas da
-                  API e a comunicação entre o frontend e os modelos de IA. Para
-                  o assistente virtual, foi integrada a API da Groq com o modelo
-                  LLaMA 3.3 70B, que interpreta as perguntas dos usuários e
-                  retorna respostas estruturadas em JSON, incluindo texto
-                  explicativo e dados para geração dinâmica de gráficos. A
-                  funcionalidade de texto para voz foi implementada com a
-                  biblioteca Edge-TTS, utilizando a voz neural brasileira
-                  pt-BR-ThalitaNeural. Todo o histórico de conversas é salvo
-                  localmente em arquivo JSON, permitindo que o usuário retome
-                  conversas anteriores a qualquer momento.
-                </p>
+              <div class="card-body d-flex align-items-center justify-content-center flex-column">
+                <h1 class="card-title" style="color: #ff6b9d">Como foi feito ?</h1>
+                <p class="card-text fs-5">O projeto foi desenvolvido em Python, combinando bibliotecas de machine learning e desenvolvimento web. Para a construção do modelo preditivo, foram utilizadas as bibliotecas Pandas e NumPy para manipulação e limpeza dos dados, Scikit-learn para o pré-processamento com StandardScaler, treinamento da Regressão Logística e avaliação com métricas como acurácia, matriz de confusão e Curva ROC. O backend da aplicação web foi construído com Flask, responsável por gerenciar as rotas da API e a comunicação entre o frontend e os modelos de IA. Para o assistente virtual, foi integrada a API da Groq com o modelo LLaMA 3.3 70B, que interpreta as perguntas dos usuários e retorna respostas estruturadas em JSON, incluindo texto explicativo e dados para geração dinâmica de gráficos. A funcionalidade de texto para voz foi implementada com a biblioteca Edge-TTS, utilizando a voz neural brasileira pt-BR-ThalitaNeural. Todo o histórico de conversas é salvo localmente em arquivo JSON, permitindo que o usuário retome conversas anteriores a qualquer momento.</p>
               </div>
             </div>
-            <div class="col-md-4">
-              <img
-                src="/static/poster.png"
-                class="img-fluid rounded-start"
-                alt="..."
-              />
-            </div>
+            <div class="col-md-4"><img src="/static/poster.png" class="img-fluid rounded-start" alt="..."/></div>
           </div>
         </div>
       </div>
 
-      <div class="d-flex align-items-center justify-content-center p-5">
+      <!-- Resultado -->
+      <div class="d-flex align-items-center justify-content-center p-5 animate__animated" data-animate="animate__fadeIn">
         <div class="card" style="min-width: 1320px; min-height: 500px">
-          <img
-            src="/static/power bi.png"
-            class="card-img-top"
-            alt="Predição de tumores de mama"
-            style="height: auto; object-fit: cover"
-          />
+          <img src="/static/power bi.png" class="card-img-top" alt="Predição de tumores de mama" style="height: auto; object-fit: cover"/>
           <div class="card-body">
             <h5 class="card-title" style="color: #ff6b9d">Resultado</h5>
-            <p class="card-text">
-              O modelo de Regressão Logística atingiu uma acurácia de 97%, com
-              AUC de 0,98 na Curva ROC, indicando excelente capacidade de
-              distinção entre tumores benignos e malignos. Dos 114 casos do
-              conjunto de teste, apenas 2 tumores malignos foram classificados
-              incorretamente como benignos, resultando em um recall de 95% para
-              a classe maligna. A análise dos coeficientes revelou que variáveis
-              como texture_worst, radius_se e concave points_mean são as mais
-              determinantes para a classificação, alinhando-se ao conhecimento
-              clínico sobre irregularidades morfológicas associadas à
-              malignidade. Esses resultados demonstram que o modelo é robusto,
-              interpretável e adequado para apoiar decisões em um contexto de
-              saúde.
-            </p>
+            <p class="card-text">O modelo de Regressão Logística atingiu uma acurácia de 97%, com AUC de 0,98 na Curva ROC, indicando excelente capacidade de distinção entre tumores benignos e malignos. Dos 114 casos do conjunto de teste, apenas 2 tumores malignos foram classificados incorretamente como benignos, resultando em um recall de 95% para a classe maligna. A análise dos coeficientes revelou que variáveis como texture_worst, radius_se e concave points_mean são as mais determinantes para a classificação, alinhando-se ao conhecimento clínico sobre irregularidades morfológicas associadas à malignidade. Esses resultados demonstram que o modelo é robusto, interpretável e adequado para apoiar decisões em um contexto de saúde.</p>
           </div>
         </div>
       </div>
 
-      <div class="p-5" style="background-color: #fff0f5">
-        <div class="m-5"><h1>Desenvolvedores</h1></div>
-        <div class="d-flex justify-content-evenly align-items-center">
-          <div class="d-flex flex-column text-center">
-            <img
-              src="/static/imagem 1.png"
-              class="img-thumbnail"
-              alt=""
-              style="height: 235px; width: 235px"
-            />
-            <p class="fw-bolder">Hayron</p>
+      <!-- Desenvolvedores -->
+      <div class="p-5 bg-rosa">
+        <div class="m-5"><h1 class="animate__animated" data-animate="animate__fadeInDown">Desenvolvedores</h1></div>
+        <div class="d-flex justify-content-evenly align-items-center flex-wrap gap-3">
+          <div class="d-flex flex-column text-center animate__animated" data-animate="animate__bounceIn">
+            <img src="/static/imagem 1.png" class="img-thumbnail" alt="" style="height: 235px; width: 235px"/>
+            <p class="fw-bolder mt-2">Hayron</p>
           </div>
-          <div class="d-flex flex-column text-center">
-            <img
-              src="/static/imagem 2.png"
-              class="img-thumbnail"
-              alt=""
-              style="height: 235px; width: 235px"
-            />
-            <p class="fw-bolder">Henrique Motta</p>
+          <div class="d-flex flex-column text-center animate__animated" data-animate="animate__bounceIn" style="animation-delay: 0.1s">
+            <img src="/static/imagem 2.png" class="img-thumbnail" alt="" style="height: 235px; width: 235px"/>
+            <p class="fw-bolder mt-2">Henrique Motta</p>
           </div>
-          <div class="d-flex flex-column text-center">
-            <img
-              src="/static/imagem 3.png"
-              class="img-thumbnail"
-              alt=""
-              style="height: 235px; width: 235px"
-            />
-            <p class="fw-bolder">Matheus Malaman</p>
+          <div class="d-flex flex-column text-center animate__animated" data-animate="animate__bounceIn" style="animation-delay: 0.2s">
+            <img src="/static/imagem 3.png" class="img-thumbnail" alt="" style="height: 235px; width: 235px"/>
+            <p class="fw-bolder mt-2">Matheus Malaman</p>
           </div>
-          <div class="d-flex flex-column text-center">
-            <img
-              src="/static/imagem 4.png"
-              class="img-thumbnail"
-              alt=""
-              style="height: 235px; width: 235px"
-            />
-            <p class="fw-bolder">Jefferson</p>
+          <div class="d-flex flex-column text-center animate__animated" data-animate="animate__bounceIn" style="animation-delay: 0.3s">
+            <img src="/static/imagem 4.png" class="img-thumbnail" alt="" style="height: 235px; width: 235px"/>
+            <p class="fw-bolder mt-2">Jefferson</p>
           </div>
         </div>
         <div class="info-footer">
           <h1 class="m-5 mb-0 fw-bolder">3 DEVT</h1>
-          <hr />
+          <hr/>
           <h1 class="m-5 mb-0 fw-bolder">SENAI LIMEIRA</h1>
-          <hr />
+          <hr/>
           <h1 class="m-5 mb-0 fw-bolder">ORIENTADOR: EDUARDO FURLANETTI</h1>
-          <hr />
+          <hr/>
         </div>
       </div>
+
     </main>
-    <script
-      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
-      integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
-      crossorigin="anonymous"
-    ></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
+
+    <script>
+      // Dark/Light mode toggle
+      const toggleBtn = document.getElementById('themeToggle');
+      const html = document.documentElement;
+      const savedTheme = localStorage.getItem('chatmammo-theme') || 'light';
+      html.setAttribute('data-bs-theme', savedTheme);
+      toggleBtn.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+
+      toggleBtn.addEventListener('click', () => {
+        const current = html.getAttribute('data-bs-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-bs-theme', next);
+        localStorage.setItem('chatmammo-theme', next);
+        toggleBtn.textContent = next === 'dark' ? '☀️' : '🌙';
+      });
+
+      // Animações ao entrar na viewport
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            el.classList.add(el.dataset.animate);
+            el.style.visibility = 'visible';
+            observer.unobserve(el);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+    </script>
   </body>
 </html>
