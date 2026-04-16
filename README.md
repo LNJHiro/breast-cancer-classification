@@ -40,6 +40,8 @@ Matplotlib → geração de gráficos e análises
 ##
 🧩 **Imports Necessários**
 
+pip install: pip install flask groq python-dotenv edge-tts asyncio
+
 import numpy as np 
 
 import pandas as pd
@@ -68,7 +70,7 @@ matplotlib → visualização gráfica dos resultados
 ##
 👥 **Integrantes**
 
-Matheus Malam
+Matheus Malaman
 Hayron Santos
 Henrique Motta
 Jefferson Bruno
