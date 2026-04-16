@@ -1,12 +1,12 @@
 
-✒️ Introdução
+✒️ **Introdução**
 
 O câncer de mama é uma das doenças que mais afetam mulheres no mundo, e a identificação precoce é um dos principais fatores para aumentar as chances de tratamento e recuperação.
 Entretanto, muitas pessoas não possuem acesso rápido a informações confiáveis ou ferramentas que auxiliem na análise inicial de possíveis sinais e sintomas.
 Diante desse cenário, surge o BreastCare AI, um sistema baseado em Inteligência Artificial desenvolvido para analisar dados relacionados à doença, classificar possíveis casos e alertar os usuários sobre situações de risco.
 O projeto busca unir tecnologia e conscientização, oferecendo suporte inicial e incentivando a procura por diagnóstico médico especializado.
 ##
-🎯 Objetivo do Projeto
+🎯**Objetivo do Projeto**
 
 Desenvolver um sistema com Inteligência Artificial capaz de:
 
@@ -16,7 +16,7 @@ Informar o usuário sobre possíveis riscos
 Incentivar a prevenção e o diagnóstico precoce
 Auxiliar na conscientização sobre a doença
 ##
-📃 Descrição do Funcionamento
+📃**Descrição do Funcionamento**
 
 A IA foi treinada para reconhecer padrões em dados relacionados ao câncer de mama, realizando a classificação dos casos e apresentando um retorno ao usuário.
 
@@ -28,7 +28,7 @@ Situações que exigem encaminhamento médico
 
 Além disso, o projeto pode ser integrado a um chatbot para tornar a comunicação mais acessível e humanizada.
 ##
-🏷️ Tecnologias Utilizadas
+🏷️** Tecnologias Utilizadas**
 
 Nesta etapa do projeto, foram utilizadas tecnologias voltadas para desenvolvimento de Inteligência Artificial e análise de dados.
 
@@ -38,7 +38,7 @@ NumPy → operações matemáticas
 Scikit-learn → treinamento do modelo de IA
 Matplotlib → geração de gráficos e análises
 ##
-🧩 Imports Necessários
+🧩 **Imports Necessários**
 
 import numpy as np
 import pandas as pd
@@ -54,13 +54,13 @@ RandomForestClassifier → modelo de classificação da IA
 accuracy_score → mede a precisão do modelo
 matplotlib → visualização gráfica dos resultados
 ##
-👥 Integrantes
+👥 **Integrantes**
 
 Matheus Malam
 Hayron Santos
 Henrique Motta
 Jefferson Bruno
 ##
-⚠️ Aviso
+⚠️** Aviso**
 
 Este projeto possui finalidade educacional e tecnológica, não substituindo avaliação ou diagnóstico médico profissional.
