@@ -61,6 +61,6 @@ Hayron Santos
 Henrique Motta
 Jefferson Bruno
 ##
-⚠️** Aviso**
+⚠️**Aviso**
 
 Este projeto possui finalidade educacional e tecnológica, não substituindo avaliação ou diagnóstico médico profissional.
