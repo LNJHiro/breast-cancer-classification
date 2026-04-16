@@ -40,18 +40,30 @@ Matplotlib → geração de gráficos e análises
 ##
 🧩 **Imports Necessários**
 
-import numpy as np \n
+import numpy as np 
+
 import pandas as pd
+
 from sklearn.model_selection import train_test_split
+
 from sklearn.ensemble import RandomForestClassifier
+
 from sklearn.metrics import accuracy_score
+
+
 import matplotlib.pyplot as plt
+
 Explicação dos imports
 NumPy → utilizado para cálculos numéricos
+
 Pandas → organização e leitura do banco de dados
+
 train_test_split → separa dados de treino e teste
+
 RandomForestClassifier → modelo de classificação da IA
+
 accuracy_score → mede a precisão do modelo
+
 matplotlib → visualização gráfica dos resultados
 ##
 👥 **Integrantes**
