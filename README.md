@@ -27,7 +27,7 @@ Casos que necessitam maior atenção
 Situações que exigem encaminhamento médico
 
 Além disso, o projeto pode ser integrado a um chatbot para tornar a comunicação mais acessível e humanizada.
-
+##
 🏷️ Tecnologias Utilizadas
 
 Nesta etapa do projeto, foram utilizadas tecnologias voltadas para desenvolvimento de Inteligência Artificial e análise de dados.
@@ -37,7 +37,7 @@ Pandas → manipulação e leitura dos dados
 NumPy → operações matemáticas
 Scikit-learn → treinamento do modelo de IA
 Matplotlib → geração de gráficos e análises
-
+##
 🧩 Imports Necessários
 
 import numpy as np
@@ -53,14 +53,14 @@ train_test_split → separa dados de treino e teste
 RandomForestClassifier → modelo de classificação da IA
 accuracy_score → mede a precisão do modelo
 matplotlib → visualização gráfica dos resultados
-
+##
 👥 Integrantes
 
 Matheus Malam
 Hayron Santos
 Henrique Motta
 Jefferson Bruno
-
+##
 ⚠️ Aviso
 
 Este projeto possui finalidade educacional e tecnológica, não substituindo avaliação ou diagnóstico médico profissional.
