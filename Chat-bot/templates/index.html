@@ -52,8 +52,10 @@
                     <div id="chatHistory" class="chat-history"></div>
                     
                     <div class="chat-input-box">
-                        <span class="material-symbols-outlined search-icon">search</span>
                         <input type="text" id="userInput" placeholder="Digite suas dúvidas..." autocomplete="off" onkeypress="handleKeyPress(event)">
+                        <button id="micBtn" class="mic-btn" title="Ativar microfone" onclick="toggleMicrophone()">
+                            <span class="material-symbols-outlined mic-icon">mic</span>
+                        </button>
                         <button id="sendBtn" onclick="sendMessage()">
                             <span class="material-symbols-outlined send-icon">send</span>
                         </button>
@@ -121,6 +123,14 @@
 
         window.onload = async () => {
             await carregarListaDeChats();
+            // Se não há chat carregado ainda e há chats disponíveis, carregar o último
+            if (!chatAtualId) {
+                const response = await fetch('/api/chats');
+                const chats = await response.json();
+                if (chats.length > 0) {
+                    await carregarConversa(chats[chats.length - 1].id);
+                }
+            }
         };
 
         async function carregarListaDeChats() {
@@ -155,29 +165,26 @@
                 item.appendChild(btnExcluir);
                 listaDiv.appendChild(item);
             });
-
-            if (!chatAtualId && chats.length > 0) {
-                carregarConversa(chats[chats.length - 1].id);
-            }
         }
 
         async function criarNovoChat() {
             const response = await fetch('/api/chat/novo', { method: 'POST' });
             const data = await response.json();
+            chatAtualId = data.id;
             await carregarListaDeChats();
-            carregarConversa(data.id);
+            await carregarConversa(data.id);
         }
 
         async function carregarConversa(id) {
-            chatAtualId = id;
+            if (chatAtualId !== id) {
+                chatAtualId = id;
+            }
             document.getElementById('chatHistory').innerHTML = ''; 
             
             document.getElementById('meuGrafico').style.display = 'none';
             document.getElementById('chartPlaceholder').style.display = 'block';
             document.getElementById('tituloGrafico').innerText = 'Estatísticas Dinâmicas';
             if (graficoAtual) graficoAtual.destroy();
-
-            await carregarListaDeChats(); 
 
             const response = await fetch(`/api/chat/${id}`);
             const data = await response.json();
@@ -229,6 +236,15 @@
                 document.getElementById('tituloGrafico').innerText = 'Estatísticas Dinâmicas';
             }
             await carregarListaDeChats();
+            
+            // Se não há mais chats, criar um novo
+            const response = await fetch('/api/chats');
+            const chats = await response.json();
+            if (chats.length === 0) {
+                await criarNovoChat();
+            } else if (!chatAtualId) {
+                await carregarConversa(chats[chats.length - 1].id);
+            }
         }
 
         async function falarTexto(texto, btnElement) {
@@ -296,23 +312,45 @@
         async function sendMessage() {
             const inputField = document.getElementById("userInput");
             const message = inputField.value.trim();
-            if (!message || !chatAtualId) return;
+            
+            // Se não há mensagem, retornar
+            if (!message) {
+                alert('Por favor, digite uma mensagem.');
+                return;
+            }
+            if (!chatAtualId) return;
 
-            appendMessage(message, "user-message", false);
+            // Exibir mensagem do usuário se houver texto
+            if (message) {
+                appendMessage(message, "user-message", false);
+            }
             inputField.value = "";
 
             roboOuvindo();
 
+            // Exibir balão de carregamento com 3 pontinhos
+            const typingElement = appendTyping();
+
             try {
                 roboRespondendo();
+
+                const payload = {
+                    message: message,
+                    chat_id: chatAtualId
+                };
 
                 const response = await fetch("/chat", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ message: message, chat_id: chatAtualId })
+                    body: JSON.stringify(payload)
                 });
                 
                 const data = await response.json();
+                
+                // Remover o balão de carregamento
+                if (typingElement && typingElement.parentNode) {
+                    typingElement.remove();
+                }
                 
                 if (data.texto) {
                     appendMessage(data.texto, "bot-message", true); 
@@ -329,12 +367,40 @@
                 }
 
             } catch (error) {
+                // Remover o balão de carregamento em caso de erro
+                if (typingElement && typingElement.parentNode) {
+                    typingElement.remove();
+                }
                 appendMessage("Falha ao conectar com o servidor.", "bot-message", false);
             } finally {
                 setTimeout(() => {
                     roboDescansando();
                 }, 2000);
             }
+        }
+
+        function appendTyping() {
+            const chatBox = document.getElementById("chatHistory");
+            const typingContainer = document.createElement("div");
+            typingContainer.className = "message bot-typing";
+            
+            const dot1 = document.createElement("span");
+            dot1.className = "typing-dot";
+            
+            const dot2 = document.createElement("span");
+            dot2.className = "typing-dot";
+            
+            const dot3 = document.createElement("span");
+            dot3.className = "typing-dot";
+            
+            typingContainer.appendChild(dot1);
+            typingContainer.appendChild(dot2);
+            typingContainer.appendChild(dot3);
+            
+            chatBox.appendChild(typingContainer);
+            chatBox.scrollTop = chatBox.scrollHeight;
+            
+            return typingContainer;
         }
 
         function appendMessage(text, className, adicionarBotaoVoz = true) {
@@ -433,6 +499,89 @@
                 btnTheme.innerHTML = 'Tema Claro';
             }
         });
+
+        /* ========================================== */
+        /* RECONHECIMENTO DE VOZ (SPEECH-TO-TEXT)    */
+        /* ========================================== */
+        
+        let isListening = false;
+        let initialValue = '';
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        const micBtn = document.getElementById('micBtn');
+        const userInput = document.getElementById('userInput');
+
+        // Configurar reconhecimento de voz
+        recognition.continuous = false;
+        recognition.interimResults = true;
+        recognition.lang = 'pt-BR'; // Idioma português brasileiro
+
+        recognition.onstart = () => {
+            isListening = true;
+            initialValue = userInput.value; // Salvar valor inicial antes de adicionar voz
+            micBtn.classList.add('recording');
+            micBtn.title = 'Gravando... Clique para parar';
+        };
+
+        recognition.onresult = (event) => {
+            let interimTranscript = '';
+            let finalTranscript = '';
+
+            // Processar TODOS os resultados desde o início
+            for (let i = 0; i < event.results.length; i++) {
+                const transcript = event.results[i][0].transcript;
+
+                if (event.results[i].isFinal) {
+                    finalTranscript += transcript + ' ';
+                } else {
+                    interimTranscript += transcript;
+                }
+            }
+
+            // Reconstruir sempre a partir do valor inicial
+            const newValue = (initialValue + ' ' + finalTranscript + interimTranscript).trim();
+            userInput.value = newValue;
+        };
+
+        recognition.onend = () => {
+            isListening = false;
+            micBtn.classList.remove('recording');
+            micBtn.title = 'Ativar microfone';
+        };
+
+        recognition.onerror = (event) => {
+            console.error('Erro no reconhecimento de voz:', event.error);
+            
+            let mensagemErro = 'Erro ao usar o microfone';
+            
+            switch(event.error) {
+                case 'network':
+                    mensagemErro = 'Erro de rede. Verifique sua conexão.';
+                    break;
+                case 'no-speech':
+                    mensagemErro = 'Nenhuma fala detectada. Tente novamente.';
+                    break;
+                case 'audio-capture':
+                    mensagemErro = 'Nenhum microfone encontrado.';
+                    break;
+                case 'not-allowed':
+                    mensagemErro = 'Permissão de microfone negada.';
+                    break;
+            }
+            
+            alert(mensagemErro);
+            isListening = false;
+            micBtn.classList.remove('recording');
+            micBtn.title = 'Ativar microfone';
+        };
+
+        function toggleMicrophone() {
+            if (isListening) {
+                recognition.stop();
+            } else {
+                userInput.focus();
+                recognition.start();
+            }
+        }
 
     </script>
 </body>

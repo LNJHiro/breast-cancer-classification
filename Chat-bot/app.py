@@ -24,6 +24,12 @@ DIRETRIZES FUNDAMENTAIS:
 4. TOM E EMPATIA: Seja acolhedor, calmo e tranquilizador. Muitas usuárias chegam ansiosas. Evite alarmismo.
 5. GRÁFICOS E DADOS: Se a pergunta envolver dados (probabilidades, fatores de risco), gere dados ilustrativos coerentes com a literatura médica para um gráfico.
 
+ANÁLISE DE IMAGENS:
+6. Quando receber uma imagem, analise se ela está relacionada a tumores de mama ou saúde mamária.
+7. Se a imagem NÃO for relacionada a tumores de mama (ex: raio-x de dente, ultrassom de gravidez, foto de paisagem, etc.), recuse educadamente e redirecione para o assunto principal, explicando que sou especializado apenas em saúde mamária.
+8. Se a imagem for relacionada a tumores de mama (mamografia, ultrassom mamário, biópsia, etc.), analise profissionalmente descrevendo características visíveis, mas SEMPRE enfatizando que não sou médico e que é necessária avaliação profissional.
+9. Para imagens médicas mamárias, descreva características como densidade, calcificações, massas, assimetrias, etc., mas sempre com isenção de responsabilidade médica.
+
 VOCÊ DEVE SEMPRE RESPONDER EXATAMENTE NESTE FORMATO JSON, SEM NENHUM TEXTO FORA DELE:
 {
   "texto": "Sua resposta profissional, empática e explicativa aqui.",
@@ -119,21 +125,41 @@ def chat():
     user_message = data.get('message', '')
     chat_id = data.get('chat_id', '')
 
-    if not user_message or not chat_id or chat_id not in banco_de_dados["chats"]:
-        return jsonify({"error": "Dados inválidos"}), 400
+    # Se não há mensagem, retornar erro
+    if not user_message:
+        return jsonify({"error": "Mensagem é obrigatória"}), 400
+    
+    if not chat_id or chat_id not in banco_de_dados["chats"]:
+        return jsonify({"error": "Chat não encontrado"}), 400
 
     chat_atual = banco_de_dados["chats"][chat_id]
 
     # Atualiza o título se for a primeira mensagem real do usuário
     if len(chat_atual["mensagens"]) == 1: # Só tem o system prompt
-        chat_atual["titulo"] = user_message[:25] + "..." if len(user_message) > 25 else user_message
+        titulo = user_message[:25] if user_message else "Análise de Imagem"
+        chat_atual["titulo"] = titulo + "..." if len(titulo) > 25 else titulo
 
-    chat_atual["mensagens"].append({"role": "user", "content": user_message})
-    salvar_memoria_json(banco_de_dados)
+    # Construir mensagem do usuário apenas com texto
+    user_content = []
+    
+    if user_message:
+        user_content.append({
+            "type": "text",
+            "text": user_message
+        })
+
+    # Preparar mensagens para a API
+    mensagens_api = chat_atual["mensagens"].copy()
+    
+    # Adicionar mensagem do usuário com suporte a conteúdo múltiplo
+    if len(user_content) == 1 and user_content[0]["type"] == "text":
+        mensagens_api.append({"role": "user", "content": user_content[0]["text"]})
+    else:
+        mensagens_api.append({"role": "user", "content": user_content})
 
     try:
         chat_completion = client.chat.completions.create(
-            messages=chat_atual["mensagens"],
+            messages=mensagens_api,
             model="llama-3.3-70b-versatile",
             temperature=0.3,
             max_tokens=1024,
@@ -143,6 +169,8 @@ def chat():
         resposta_bruta = chat_completion.choices[0].message.content
         resposta_json = json.loads(resposta_bruta)
 
+        # Salvar apenas o texto da mensagem no histórico
+        chat_atual["mensagens"].append({"role": "user", "content": user_message})
         chat_atual["mensagens"].append({"role": "assistant", "content": resposta_bruta})
         salvar_memoria_json(banco_de_dados)
 
@@ -158,7 +186,10 @@ def chat():
         if len(chat_atual["mensagens"]) > 1:
             chat_atual["mensagens"].pop()
             salvar_memoria_json(banco_de_dados)
-        return jsonify({"error": "Desculpe, ocorreu um erro."}), 500
+        
+        resposta_erro = {"error": "Desculpe, ocorreu um erro."}
+        
+        return jsonify(resposta_erro), 500
 
 @app.route('/tts', methods=['POST'])
 def tts():

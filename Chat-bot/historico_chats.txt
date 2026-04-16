@@ -39,3 +39,79 @@ ChatMammo: Estou aqui para ajudar e oferecer informações sobre tumores de mama
 Usuário: Qual a probabilidade de ter câncer de mama?"
 ChatMammo: A probabilidade de ter câncer de mama varia de acordo com vários fatores, incluindo idade, história familiar e outros fatores de risco. De acordo com estatísticas, cerca de 1 em 8 mulheres desenvolverão câncer de mama ao longo da vida.
 --------------------------------------------------
+[16/04/2026 16:01:56] [Chat: b1d09eca-976c-4881-b240-02dd273ebfbe]
+Usuário: fgf
+ChatMammo: Olá! Eu sou o ChatMammo, um assistente virtual aqui para ajudar com informações sobre tumores de mama. Se você tiver alguma dúvida ou preocupação, sinta-se à vontade para perguntar. Lembre-se de que, embora eu possa oferecer informações úteis, é sempre importante consultar um profissional de saúde para obter orientação personalizada.
+--------------------------------------------------
+[16/04/2026 16:02:04] [Chat: b1d09eca-976c-4881-b240-02dd273ebfbe]
+Usuário: fgfg]
+ChatMammo: Parece que você digitou algo que não é uma pergunta clara. Por favor, sinta-se à vontade para perguntar sobre tumores de mama ou qualquer outra preocupação relacionada à saúde da mama. Estou aqui para ajudar!
+--------------------------------------------------
+[16/04/2026 16:02:10] [Chat: b1d09eca-976c-4881-b240-02dd273ebfbe]
+Usuário: fgfgf
+ChatMammo: Se você está procurando informações sobre tumores de mama, posso ajudar com isso. No entanto, para uma resposta mais precisa, poderia me dar mais detalhes sobre o que você gostaria de saber? Isso pode incluir sintomas, prevenção, tratamento, ou qualquer outra coisa relacionada à saúde da mama.
+--------------------------------------------------
+[16/04/2026 16:02:14] [Chat: b1d09eca-976c-4881-b240-02dd273ebfbe]
+Usuário: fgg
+ChatMammo: Parece que você ainda não formulou uma pergunta clara. Se você tiver alguma dúvida ou preocupação sobre a saúde da mama, como sintomas, exames, tratamentos ou prevenção, por favor, me pergunte e farei o meu melhor para ajudar.
+--------------------------------------------------
+[16/04/2026 16:03:23] [Chat: b1d09eca-976c-4881-b240-02dd273ebfbe]
+Usuário: fgfgf
+ChatMammo: Se você está procurando informações sobre tumores de mama, é importante lembrar que o diagnóstico e o tratamento devem ser feitos por um profissional de saúde qualificado. Se você tiver alguma dúvida específica, como os sintomas do câncer de mama, como realizar um autoexame, ou sobre os diferentes tipos de tratamento, estou aqui para ajudar com informações gerais.
+--------------------------------------------------
+[16/04/2026 16:03:30] [Chat: b1d09eca-976c-4881-b240-02dd273ebfbe]
+Usuário: fgfg
+ChatMammo: Parece que você ainda não forneceu informações suficientes para que eu possa ajudar de forma eficaz. Se você puder fornecer mais detalhes ou fazer uma pergunta específica sobre a saúde da mama ou tumores de mama, farei o meu melhor para fornecer uma resposta útil e acolhedora.
+--------------------------------------------------
+[16/04/2026 16:03:34] [Chat: b1d09eca-976c-4881-b240-02dd273ebfbe]
+Usuário: fgfg
+ChatMammo: Se você está procurando informações sobre a saúde da mama, é importante lembrar que a prevenção e o diagnóstico precoce são fundamentais. Se você tiver alguma dúvida sobre como cuidar da sua saúde da mama, como realizar exames de rotina ou sobre os sintomas de possíveis problemas, estou aqui para ajudar com informações gerais.
+--------------------------------------------------
+[16/04/2026 16:13:36] [Chat: b1d09eca-976c-4881-b240-02dd273ebfbe]
+Usuário: Oi Oi tudo bem
+ChatMammo: Oi! Tudo bem sim! É um prazer conversar com você. Se você tiver alguma dúvida ou preocupação sobre a saúde da mama, como tumores de mama, sintomas, prevenção ou tratamento, estou aqui para ajudar com informações úteis e acolhedoras. Como posso ajudar você hoje?
+--------------------------------------------------
+[16/04/2026 16:13:56] [Chat: b1d09eca-976c-4881-b240-02dd273ebfbe]
+Usuário: Estou com problemas de tumores de mama
+ChatMammo: Sinto muito que você esteja passando por isso. É importante lembrar que os tumores de mama podem ser benignos ou malignos, e apenas um profissional de saúde pode fornecer um diagnóstico preciso. Se você ainda não fez, é crucial marcar uma consulta com um médico especializado em mama ou um oncologista para uma avaliação detalhada. Eles poderão realizar exames necessários, como mamografia, ultrassom ou biópsia, para determinar a natureza do tumor. Enquanto isso, se você tiver alguma dúvida ou preocupação específica sobre seus sintomas ou o que esperar do processo de diagnóstico, estou aqui para oferecer suporte e informações gerais.
+--------------------------------------------------
+[16/04/2026 16:14:37] [Chat: b1d09eca-976c-4881-b240-02dd273ebfbe]
+Usuário: Oi Olá tudo bem
+ChatMammo: Oi! Tudo bem sim! É um prazer conversar com você novamente. Se você tiver alguma dúvida ou preocupação sobre a saúde da mama, como tumores de mama, sintomas, prevenção ou tratamento, estou aqui para ajudar com informações úteis e acolhedoras. Como posso ajudar você hoje?
+--------------------------------------------------
+[16/04/2026 16:15:20] [Chat: b1d09eca-976c-4881-b240-02dd273ebfbe]
+Usuário: Gere um gráfico para mim explicando sobre tumores de mama
+ChatMammo: Aqui está uma visão geral sobre os tipos de tumores de mama. É importante lembrar que apenas um profissional de saúde pode fornecer um diagnóstico preciso.
+--------------------------------------------------
+[16/04/2026 16:24:00] [Chat: 31c0cc16-6e8d-448b-a116-fe9f35ad1e9a]
+Usuário: jhjhg
+ChatMammo: Olá, entendo que você pode estar procurando informações sobre saúde mamária, mas parece que sua pergunta não está clara. Estou aqui para ajudar com qualquer dúvida sobre tumores de mama, prevenção, exames e mais. Por favor, sinta-se à vontade para fazer uma pergunta específica sobre saúde mamária, e farei o meu melhor para ajudar. Lembre-se, é importante consultar um mastologista ou ginecologista para avaliação clínica e exames de imagem, como ultrassom, mamografia ou biópsia, se tiver alguma preocupação.
+--------------------------------------------------
+[16/04/2026 16:27:04] [Chat: 2ca3ac51-1570-4cd0-8802-68a8262e1031]
+Usuário: jhkjhkj
+ChatMammo: Olá, parece que você digitou algo que não está relacionado à saúde mamária ou tumores de mama. Eu sou um assistente especializado em saúde da mulher, com foco em tumores de mama (benignos e malignos), prevenção e exames. Se você tiver alguma dúvida ou preocupação sobre saúde mamária, estou aqui para ajudar. Por favor, sinta-se à vontade para perguntar sobre qualquer tema relacionado à saúde dos seios.
+--------------------------------------------------
+[16/04/2026 16:27:22] [Chat: 2ca3ac51-1570-4cd0-8802-68a8262e1031]
+Usuário: kjkjh
+ChatMammo: Parece que você não digitou nada relacionado à saúde mamária ou tumores de mama. Eu estou aqui para ajudar com qualquer dúvida ou preocupação que você tenha sobre a saúde dos seios. Se você tiver alguma pergunta sobre tumores benignos ou malignos, prevenção, exames como mamografia ou ultrassom, ou qualquer outro tema relacionado, por favor, sinta-se à vontade para perguntar.
+--------------------------------------------------
+[16/04/2026 16:45:48] [Chat: 0721f981-7f50-45ee-8dc8-9ad098f5d1e0]
+Usuário: Olá tudo bem
+ChatMammo: 
+--------------------------------------------------
+[16/04/2026 16:45:58] [Chat: 0721f981-7f50-45ee-8dc8-9ad098f5d1e0]
+Usuário: Olá tudo bem
+ChatMammo: Olá! Estou aqui para ajudar com qualquer dúvida ou preocupação sobre saúde mamária. Se você tiver alguma pergunta sobre tumores de mama, prevenção, exames ou qualquer outro tópico relacionado, sinta-se à vontade para perguntar. Lembre-se de que não sou médico, então sempre é importante consultar um profissional de saúde para avaliação e diagnóstico preciso.
+--------------------------------------------------
+[16/04/2026 16:46:09] [Chat: 3cbd60f1-4910-4f1e-9811-6fd01eeb33db]
+Usuário: como você está
+ChatMammo: Estou bem, obrigado por perguntar! No entanto, gostaria de lembrar que meu foco é em saúde da mulher, especialmente em tumores de mama. Se você tiver alguma dúvida ou preocupação sobre saúde mamária, estou aqui para ajudar. Lembre-se de que não sou médico, então qualquer informação que eu forneça deve ser complementada por uma avaliação profissional com um mastologista ou ginecologista.
+--------------------------------------------------
+[16/04/2026 16:46:26] [Chat: 96cc151e-4d93-448a-9ebf-73412b3a0c80]
+Usuário: qual a probabilidade de ter câncer de mama
+ChatMammo: A probabilidade de ter câncer de mama varia de acordo com vários fatores, incluindo idade, história familiar, fatores de risco genéticos e estilo de vida. De acordo com a literatura médica, cerca de 1 em 8 mulheres desenvolverão câncer de mama em algum momento de suas vidas. No entanto, é importante notar que a maioria dos casos de câncer de mama ocorre em mulheres acima de 50 anos. Além disso, a probabilidade de ter câncer de mama também pode ser influenciada por fatores como obesidade, sedentarismo, consumo excessivo de álcool e histórico de radiação na região da mama. É fundamental realizar exames de rotina, como mamografia e ultrassom, para detectar possíveis anomalias mamárias precocemente. Se você tiver alguma preocupação, é importante consultar um mastologista ou ginecologista para avaliação clínica e exames de imagem.
+--------------------------------------------------
+[16/04/2026 16:51:27] [Chat: dc09ac9b-94ed-4c06-8ccc-7374135fbd8c]
+Usuário: qual a probabilidade de ter câncer de mama
+ChatMammo: A probabilidade de ter câncer de mama varia de acordo com vários fatores, incluindo idade, história familiar, fatores de risco genéticos e estilo de vida. De acordo com a literatura médica, cerca de 1 em 8 mulheres desenvolverão câncer de mama em algum momento de suas vidas. No entanto, é importante notar que a maioria dos casos de câncer de mama ocorre em mulheres acima de 50 anos. Além disso, a probabilidade de ter câncer de mama também pode ser influenciada por fatores como história familiar de câncer de mama, mutações nos genes BRCA1 e BRCA2, e outros fatores de risco. É fundamental realizar exames de rotina, como mamografia e ultrassom, para detectar possíveis problemas de saúde mamária. Se você tiver alguma preocupação, é importante consultar um mastologista ou ginecologista para avaliação clínica e exames de imagem.
+--------------------------------------------------

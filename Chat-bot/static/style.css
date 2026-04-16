@@ -245,7 +245,7 @@ body, html {
 
 .mini-avatar {
     width: 32px; height: 32px; 
-    background-image: url('Robo\ 3D.glb'); /* Apenas uma barra */
+    background-image: url('miniAvatar.png'); /* Apenas uma barra */
     background-size: cover;
     background-position: center top;
     border-radius: 50%;
@@ -306,9 +306,73 @@ body, html {
     margin-right: 0; 
 }
 
+.user-message img {
+    max-width: 200px;
+    border-radius: 8px;
+    margin-top: 8px;
+    display: block;
+}
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+/* Animação dos 3 pontinhos de carregamento */
+@keyframes dotAnimation {
+    0%, 20% {
+        content: '.';
+        letter-spacing: 0;
+    }
+    40% {
+        content: '..';
+        letter-spacing: 2px;
+    }
+    60%, 100% {
+        content: '...';
+        letter-spacing: 2px;
+    }
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Classe para o balão de carregamento */
+.bot-typing {
+    background: rgba(30, 30, 30, 0.85);
+    color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+    margin-left: 0;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 12px 18px;
+    width: fit-content;
+    max-width: 80%;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.typing-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.6);
+    display: inline-block;
+    animation: blink 1.4s infinite;
+}
+
+.typing-dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+    animation-delay: 0.4s;
 }
 
 .chat-input-box {
@@ -330,6 +394,26 @@ body, html {
 
 .search-icon { color: rgba(255,255,255,0.6); margin-right: 10px; font-size: 1.2rem; }
 
+/* Botão de arquivo */
+.file-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+    padding-right: 10px;
+    padding-left: 10px;
+    transition: all 0.3s ease;
+}
+
+.file-btn span {
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+}
+
+.file-btn:hover span {
+    color: #ff6b9d;
+}
+
 .chat-input-box input {
     flex: 1;
     border: none;
@@ -350,6 +434,36 @@ body, html {
 
 .send-icon { font-size: 1.3rem; transition: color 0.2s; }
 .chat-input-box button:hover .send-icon { color: #ff6b9d; }
+
+/* Botão de microfone */
+.mic-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    transition: all 0.3s ease;
+}
+
+.mic-icon { 
+    font-size: 1.3rem; 
+    transition: all 0.3s ease;
+}
+
+.mic-btn:hover .mic-icon { 
+    color: #ff6b9d; 
+}
+
+.mic-btn.recording .mic-icon {
+    color: #ff2a2a;
+    animation: micPulse 1s infinite;
+}
+
+@keyframes micPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.1); }
+}
 
 .btn-falar {
     background: transparent;
@@ -560,6 +674,12 @@ body.light-mode .chat-item.ativo {
 body.light-mode .btn-excluir { color: #888; }
 body.light-mode .btn-excluir:hover { color: #ff2a2a; }
 
+/* Imagens no chat em modo claro */
+body.light-mode .user-message img {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
 /* Ajuste das informações na caixa de digitação */
 body.light-mode .chat-input-box input {
     color: #111 !important; 
@@ -569,7 +689,44 @@ body.light-mode .chat-input-box input {
 body.light-mode .chat-input-box input::placeholder { color: #555 !important; }
 body.light-mode .search-icon, body.light-mode .chat-input-box .send-icon { color: #111 !important; }
 
+/* Botão de arquivo no modo claro */
+body.light-mode .file-btn span {
+    color: #111 !important;
+}
+
+body.light-mode .file-btn:hover span {
+    color: #ff6b9d !important;
+}
+
+/* Microfone no modo claro */
+body.light-mode .mic-btn:hover .mic-icon { 
+    color: #ff6b9d !important; 
+}
+
+body.light-mode .mic-icon {
+    color: #111 !important;
+}
+
+body.light-mode .mic-btn.recording .mic-icon {
+    color: #ff2a2a !important;
+}
+
 /* Ajuste do botão Novo Chat */
 body.light-mode #btn-novo-chat {
     box-shadow: 0 4px 10px rgba(255, 107, 157, 0.3);
+}
+
+/* Balão de carregamento (bot-typing) no modo claro */
+body.light-mode .bot-typing {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    color: rgba(0, 0, 0, 0.7) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+}
+
+/* Pontinhos de carregamento no modo claro */
+body.light-mode .typing-dot {
+    background-color: rgba(0, 0, 0, 0.5) !important;
 }
